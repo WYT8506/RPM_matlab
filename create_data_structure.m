@@ -6,7 +6,8 @@ ds.number_of_persons = size(person_matrix,2);
 ds.number_of_features = size(person_matrix(1,1).feature_values,2);
 ds.outcomes = dec2bin(0:+1:2^ds.number_of_persons-1)-'0';
 
-%create outcome_feature_matrixes
+%create
+%outcome_feature_matrixes,size is (number_of_outcomes,number_of_features,number_of_questions)
 for i1 = 1: ds.number_of_questions
     outcome_feature_matrix = zeros(size(ds.outcomes,1),ds.number_of_features);
     for i2 = 1: size(ds.outcomes,1)
@@ -22,6 +23,7 @@ for i1 = 1: ds.number_of_questions
     ds.outcome_feature_matrixs(:,:,i1) = outcome_feature_matrix;
 end
 
+%create outcome_probabilities_matrixs,size is (number_of_lotteries, number_of_outcomes, number_of_questions)
 for question_number = 1: ds.number_of_questions
     outcome_probabilities_matrix = zeros(ds.number_of_persons,size(ds.outcomes,1));
     for lottery_number = 1: ds.number_of_persons
