@@ -8,5 +8,5 @@ pm = [p1,p2,p3;p4,p5,p6];
 ds = create_data_structure(pm);
 beta = [1,2,3];
 phi = 0.5;
-dg = create_data_generator(a,beta,phi);
+dg = create_data_generator(ds,beta,phi);
 sample_a_ranking(dg.prospect_value_matrix,1,[0,0,0]);
