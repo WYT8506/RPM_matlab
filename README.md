@@ -1,6 +1,9 @@
 # RPM_matlab
-f3 or f can be used to calculate likelihood of a ranking when the number of lotteries is three. f3 maybe? little quicker
-when the number of lotteries is not three, f should be used.
+Example code for f,f3,get_likelihood,and AIC is in test.m.
+Example code for create_data_structure,create_data_generator,and sample_a_ranking is in main.m.
 
-example code for f and f3 is in test.m
+f3 or f can be used to calculate likelihood of a ranking when the number of lotteries is three.
+when the number of lotteries is not three, f should be used. Both of them use trapz.
+
+
 
