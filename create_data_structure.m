@@ -1,9 +1,9 @@
 
-function ds = create_data_structure(person_matrix)
-ds.person_matrix = person_matrix;
-ds.number_of_questions = size(person_matrix,1);
-ds.number_of_persons = size(person_matrix,2);
-ds.number_of_features = size(person_matrix(1,1).feature_values,2);
+function ds = create_data_structure(person_data)
+ds.person_data = person_data;
+ds.number_of_questions = size(person_data.p_with,1);
+ds.number_of_persons = size(person_data.p_with,2);
+ds.number_of_features = size(person_data.feature_values,2);
 ds.outcomes = dec2bin(0:+1:2^ds.number_of_persons-1)-'0';
 
 %create
@@ -12,12 +12,7 @@ for i1 = 1: ds.number_of_questions
     outcome_feature_matrix = zeros(size(ds.outcomes,1),ds.number_of_features);
     for i2 = 1: size(ds.outcomes,1)
         outcome = ds.outcomes(i2,:);
-        feature_vector = zeros(size(person_matrix(1,1).feature_values));
-        for i3 = 1:size(ds.outcomes,2)
-            if outcome(i3) == 1
-                feature_vector = feature_vector + person_matrix(i1,i3).feature_values;
-            end
-        end
+        feature_vector = outcome*person_data.feature_values(:,:,i1);
         outcome_feature_matrix(i2,:) = feature_vector;
     end
     ds.outcome_feature_matrixs(:,:,i1) = outcome_feature_matrix;
@@ -34,15 +29,15 @@ for question_number = 1: ds.number_of_questions
             for i = 1:size(ds.outcomes,2)
                 if i == lottery_number
                     if outcome(i) == 1
-                        P = P*person_matrix(question_number,i).p_with;
+                        P = P*person_data.p_with(question_number,i);
                     else
-                        P = P*(1-person_matrix(question_number,i).p_with);
+                        P = P*(1-person_data.p_with(question_number,i));
                     end   
                 else          
                     if outcome(i) == 1
-                        P = P*person_matrix(question_number,i).p_without;
+                        P = P*person_data.p_without(question_number,i);
                     else
-                        P = P*(1-person_matrix(question_number,i).p_without);
+                        P = P*(1-person_data.p_without(question_number,i));
                     end 
                 end 
             end
