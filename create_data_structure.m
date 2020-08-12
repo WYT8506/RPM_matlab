@@ -18,6 +18,12 @@ for i1 = 1: ds.number_of_questions
     ds.outcome_feature_matrixs(:,:,i1) = outcome_feature_matrix;
 end
 
+ds.outcome_feature_matrixs1 = zeros(ds.number_of_questions*size(ds.outcomes,1),ds.number_of_questions*ds.number_of_features);
+for i = 1:size(ds.outcome_feature_matrixs,3)
+    ds.outcome_feature_matrixs1(((i-1)*size(ds.outcomes,1)+1):(i*size(ds.outcomes,1)),((i-1)*ds.number_of_features+1):(i*ds.number_of_features)) = ds.outcome_feature_matrixs(:,:,i);
+end
+    
+
 %create outcome_probabilities_matrixs,size is (number_of_lotteries, number_of_outcomes, number_of_questions)
 for question_number = 1: ds.number_of_questions
     outcome_probabilities_matrix = zeros(ds.number_of_persons,size(ds.outcomes,1));
@@ -47,6 +53,12 @@ for question_number = 1: ds.number_of_questions
     end
     ds.outcome_probabilities_matrixs(:,:,question_number) = outcome_probabilities_matrix;
 end
+
+ds.outcome_probabilities_matrixs1 = zeros(ds.number_of_persons*ds.number_of_questions,ds.number_of_questions*size(ds.outcomes,1));
+for i = 1:size(ds.outcome_probabilities_matrixs,3)
+    ds.outcome_probabilities_matrixs1(((i-1)*ds.number_of_persons+1):(i*ds.number_of_persons),((i-1)*size(ds.outcomes,1)+1):(i*size(ds.outcomes,1))) = ds.outcome_probabilities_matrixs(:,:,i);
+end
+    
     
             
             

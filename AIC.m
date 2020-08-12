@@ -12,10 +12,10 @@ function aic = AIC(preference_profiles,k,prospect_matrix,sd,upper,lower,interval
                 hist(ranking) = hist(ranking)+1;
             end
         end
-        disp(hist.keys())
-        disp(hist.values())
+        %disp(hist.keys())
+        %disp(hist.values())
         likelihood = get_likelihood(hist,prospect_matrix(question_number,:),sd,upper,lower,interval);
-        disp(likelihood);
+        %disp(likelihood);
         ll = log(likelihood);
         total_ll = total_ll+ll;
     end 

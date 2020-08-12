@@ -14,6 +14,7 @@ preference_profiles = [];
 preference_profiles(1,:) = [123,213,123,123];
 preference_profiles(2,:) = [132,231,231,123];
 
+breaking = create_breaking(preference_profiles);
 prospect_matrix = [3,2,1;2,2,2];
 AIC(preference_profiles,4,prospect_matrix,1,10,-10,0.1)
 
