@@ -7,7 +7,7 @@ long_V = [];
 for i = 1: size(P,3)
     E = P(:,:,i)*X(:,:,i);
     V = E*beta';
-    long_V((i-1)* size(P,3)+1:(i)* size(P,3)) = V;
+    long_V((i-1)* size(P,1)+1:(i)* size(P,1)) = V;
 end
 %disp(long_V);
 V=long_V;

@@ -1,4 +1,4 @@
-function aic = AIC(preference_profiles,k,prospect_matrix,sd,upper,lower,interval)
+function aic_bic_mdl = AIC(preference_profiles,k,prospect_matrix,sd,upper,lower,interval)
     total_ll = 0;
     for question_number = 1:size(prospect_matrix,1)
         hist = containers.Map;
@@ -12,12 +12,15 @@ function aic = AIC(preference_profiles,k,prospect_matrix,sd,upper,lower,interval
                 hist(ranking) = hist(ranking)+1;
             end
         end
-        %disp(hist.keys())
-        %disp(hist.values())
-        likelihood = get_likelihood(hist,prospect_matrix(question_number,:),sd,upper,lower,interval);
+        disp(hist.keys())
+        disp(hist.values())
+        ll = get_likelihood(hist,prospect_matrix(question_number,:),sd,upper,lower,interval);
+        disp(ll);
         %disp(likelihood);
-        ll = log(likelihood);
         total_ll = total_ll+ll;
     end 
+    N = preference_profiles.size(1)*preference_profiles.size(2);
     aic = -2*total_ll +2*k;
+    bic = -2*ll+log(N)*k;
+    
     

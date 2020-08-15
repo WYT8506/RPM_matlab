@@ -5,7 +5,7 @@ for i = 1: size(means,2)
     sampled_values(1,i) = normrnd(means(1,i),sd);
 end
 index_value_pairs = [1:size(means,2);sampled_values];
-sorted_index_value_pairs = transpose(sortrows(transpose(index_value_pairs),2));
+sorted_index_value_pairs = transpose(sortrows(transpose(index_value_pairs),2,'descend'));
 ranking = sorted_index_value_pairs(1,:);
 end
    
