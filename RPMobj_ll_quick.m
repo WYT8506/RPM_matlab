@@ -1,5 +1,5 @@
 function se = RPMobj_ll_quick(betagamma, breaking, P, X)
-disp(betagamma);
+%disp(betagamma);
 m = size(breaking, 1);
 k = size(X,2);
 beta = betagamma(1:k);
@@ -29,5 +29,5 @@ for i1 = 1:(m-1)
         se=se-breaking(i1,i2)*log(f12)-breaking(i2,i1)*log(f21);
     end
 end
-disp(se)
+%disp(se)
 end
